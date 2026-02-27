@@ -1,33 +1,27 @@
 import { useState, useEffect } from "react";
+import promo1 from "../assets/promo1.png";
+import promo2 from "../assets/promo2.png";
 
 const promos = [
   {
     id: 1,
-    title: "Flash Sale Hari Ini!",
-    subtitle: "Diskon hingga 50% untuk semua produk elektronik",
-    bg: "from-indigo-500 to-purple-600",
-    emoji: "",
+    image: promo1,
+    alt: "Promo Flash Sale",
   },
   {
     id: 2,
-    title: "Free Ongkir Se-Indonesia",
-    subtitle: "Berlaku untuk pembelian di atas Rp200.000",
-    bg: "from-pink-500 to-rose-500",
-    emoji: "",
+    image: promo2,
+    alt: "Promo Lebaran",
   },
   {
     id: 3,
-    title: "New Arrivals!",
-    subtitle: "Produk terbaru sudah tersedia, cek sekarang!",
-    bg: "from-teal-400 to-cyan-600",
-    emoji: "",
+    image: "https://picsum.photos/seed/promo3/1200/400",
+    alt: "New Arrivals",
   },
   {
     id: 4,
-    title: "Member Exclusive",
-    subtitle: "Daftar sekarang dan dapatkan cashback 10%",
-    bg: "from-orange-400 to-yellow-500",
-    emoji: "",
+    image: "https://picsum.photos/seed/promo4/1200/400",
+    alt: "Member Exclusive",
   },
 ];
 
@@ -54,20 +48,14 @@ const PromoSlider = () => {
           style={{ transform: `translateX(-${current * 100}%)` }}
         >
           {promos.map((promo) => (
-            <div
-              key={promo.id}
-              className={`min-w-full bg-gradient-to-r ${promo.bg} text-white px-14 py-10 flex items-center justify-between`}
-            >
-              <div>
-                <p className="text-4xl mb-2">{promo.emoji}</p>
-                <h2 className="text-2xl font-extrabold mb-1">{promo.title}</h2>
-                <p className="text-white/80 text-sm">{promo.subtitle}</p>
-              </div>
-              <button className="bg-white/20 hover:bg-white/30 transition-colors px-5 py-3 rounded-xl font-semibold text-sm whitespace-nowrap">
-                Lihat Promo →
-              </button>
-            </div>
-          ))}
+          <div key={promo.id} className="min-w-full">
+            <img
+              src={promo.image}
+              alt={promo.alt}
+              className="w-full h-70 md:h-67 object-cover"
+            />
+          </div>
+        ))}
         </div>
 
         {/* Arrow Buttons */}

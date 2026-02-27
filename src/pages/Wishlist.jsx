@@ -1,68 +1,107 @@
+import { motion, AnimatePresence } from "framer-motion";
+import { Heart } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import EmptyState from "../components/EmptyState";
+import OrderModal from "../components/OrderModal";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, orderProduct } = useApp();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("id-ID", {
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
       minimumFractionDigits: 0,
     }).format(price);
-  };
 
   if (wishlist.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-center">
-        <p className="text-6xl mb-4">🤍</p>
-        <h2 className="text-2xl font-bold text-gray-700 mb-2">Wishlist Kosong</h2>
-        <p className="text-gray-400">Belum ada produk yang kamu wishlist. Yuk explore catalog!</p>
-      </div>
+      <EmptyState
+        icon={Heart}
+        title="Wishlist Kosong"
+        description="Belum ada produk yang kamu simpan. Yuk temukan produk favoritmu!"
+        action={{ label: "Explore Produk", onClick: () => navigate("/") }}
+      />
     );
   }
 
   return (
-    <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Wishlist Saya</h1>
-        <p className="text-gray-500 mt-1">{wishlist.length} produk tersimpan</p>
-      </div>
-      <div className="flex flex-col gap-4">
-        {wishlist.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white rounded-2xl shadow-md p-4 flex gap-4 items-center hover:shadow-lg transition-shadow"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-24 h-24 object-cover rounded-xl"
-            />
-            <div className="flex-1">
-              <span className="text-xs text-indigo-500 font-semibold uppercase tracking-wide">
-                {product.category}
-              </span>
-              <h2 className="text-lg font-bold text-gray-800">{product.name}</h2>
-              <p className="text-sm text-gray-500">{product.description}</p>
-              <p className="text-indigo-600 font-bold mt-1">{formatPrice(product.price)}</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <button
-                onClick={() => orderProduct(product)}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700 transition-colors"
-              >
-                🛒 Order Now
-              </button>
-              <button
-                onClick={() => removeFromWishlist(product.id)}
-                className="px-4 py-2 bg-red-50 text-red-500 border border-red-300 rounded-xl text-sm font-semibold hover:bg-red-100 transition-colors"
-              >
-                🗑️ Hapus
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="pb-8 px-4 pt-8">
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h1 className="text-3xl font-medium text-foreground">Wishlist Saya</h1>
+        <p className="text-muted-foreground mt-1">{wishlist.length} produk tersimpan</p>
+      </motion.div>
+
+      <AnimatePresence>
+        <div className="flex flex-col gap-4">
+          {wishlist.map((product, index) => (
+            <motion.div
+              key={product.id}
+              className="bg-card rounded-2xl border border-border shadow-sm p-4 flex gap-4 items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(168,213,226,0.2)" }}
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-24 h-24 object-cover rounded-xl"
+              />
+              <div className="flex-1">
+                <span className="text-xs text-primary font-medium uppercase tracking-wide">
+                  {product.category}
+                </span>
+                <h2 className="text-lg font-medium text-card-foreground">
+                  {product.name}
+                </h2>
+                <p className="text-sm text-muted-foreground line-clamp-1">
+                  {product.description}
+                </p>
+                <p className="text-primary font-bold mt-1">
+                  {formatPrice(product.price)}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 shrink-0">
+                <motion.button
+                  onClick={() => setSelectedProduct(product)}
+                  className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:shadow-md transition-shadow"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🛒 Order
+                </motion.button>
+                <motion.button
+                  onClick={() => removeFromWishlist(product.id)}
+                  className="px-4 py-2 bg-destructive/10 text-destructive rounded-full text-sm font-medium hover:bg-destructive/20 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🗑️ Hapus
+                </motion.button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </AnimatePresence>
+
+      {selectedProduct && (
+        <OrderModal
+          product={selectedProduct}
+          onConfirm={orderProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </div>
   );
 };

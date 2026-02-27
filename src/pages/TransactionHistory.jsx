@@ -27,7 +27,7 @@ const TransactionHistory = () => {
   }
 
   return (
-    <div>
+    <div className="pb-8 px-4 pt-8">
       <motion.div
         className="mb-8"
         initial={{ opacity: 0, y: -20 }}

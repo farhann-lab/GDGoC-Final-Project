@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
 import products from "../data/products";
 import ProductCard from "../components/ProductCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import PromoSlider from "../components/PromoSlider";
 
-const Home = () => {
+const Home = ({ searchQuery }) => {
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const Home = () => {
   });
 
   return (
-    <div className="pb-8">
+    <div className="pb-8 px-4 pt-8">
       {/* Hero */}
       <motion.div
         className="mb-8 text-center"
@@ -45,25 +43,6 @@ const Home = () => {
 
       {/* Promo Slider */}
       <PromoSlider />
-
-      {/* Search Bar */}
-      <motion.div
-        className="mb-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-      >
-        <div className="relative max-w-2xl mx-auto">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Cari produk..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-input-background border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-          />
-        </div>
-      </motion.div>
 
       {/* Category Filter */}
       <motion.div
