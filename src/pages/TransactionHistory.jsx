@@ -1,62 +1,90 @@
+import { motion, AnimatePresence } from "framer-motion";
+import { ClipboardList } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import EmptyState from "../components/EmptyState";
+import { useNavigate } from "react-router-dom";
 
 const TransactionHistory = () => {
   const { transactions } = useApp();
+  const navigate = useNavigate();
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("id-ID", {
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
       minimumFractionDigits: 0,
     }).format(price);
-  };
 
   if (transactions.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-center">
-        <p className="text-6xl mb-4">🧾</p>
-        <h2 className="text-2xl font-bold text-gray-700 mb-2">Belum Ada Transaksi</h2>
-        <p className="text-gray-400">Kamu belum melakukan order apapun. Yuk mulai belanja!</p>
-      </div>
+      <EmptyState
+        icon={ClipboardList}
+        title="Belum Ada Transaksi"
+        description="Kamu belum melakukan order apapun. Yuk mulai belanja!"
+        action={{ label: "Mulai Belanja", onClick: () => navigate("/") }}
+      />
     );
   }
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Transaction History</h1>
-        <p className="text-gray-500 mt-1">{transactions.length} transaksi tercatat</p>
-      </div>
-      <div className="flex flex-col gap-4">
-        {transactions.map((transaction) => (
-          <div
-            key={transaction.id}
-            className="bg-white rounded-2xl shadow-md p-4 flex gap-4 items-center hover:shadow-lg transition-shadow"
-          >
-            <img
-              src={transaction.product.image}
-              alt={transaction.product.name}
-              className="w-24 h-24 object-cover rounded-xl"
-            />
-            <div className="flex-1">
-              <span className="text-xs text-indigo-500 font-semibold uppercase tracking-wide">
-                {transaction.product.category}
-              </span>
-              <h2 className="text-lg font-bold text-gray-800">{transaction.product.name}</h2>
-              <p className="text-sm text-gray-500">{transaction.date}</p>
-              <p className="text-xs text-gray-400 font-mono">{transaction.orderId}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-indigo-600 font-bold text-lg">
-                {formatPrice(transaction.product.price)}
-              </p>
-              <span className="inline-block mt-1 px-3 py-1 bg-green-100 text-green-600 text-xs font-semibold rounded-full">
-                ✅ Success
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h1 className="text-3xl font-medium text-foreground">Transaction History</h1>
+        <p className="text-muted-foreground mt-1">{transactions.length} transaksi tercatat</p>
+      </motion.div>
+
+      <AnimatePresence>
+        <div className="flex flex-col gap-4">
+          {transactions.map((transaction, index) => (
+            <motion.div
+              key={transaction.id}
+              className="bg-card rounded-2xl border border-border shadow-sm p-4 flex gap-4 items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+              whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(168,213,226,0.2)" }}
+            >
+              <img
+                src={transaction.product.image}
+                alt={transaction.product.name}
+                className="w-24 h-24 object-cover rounded-xl"
+              />
+              <div className="flex-1">
+                <span className="text-xs text-primary font-medium uppercase tracking-wide">
+                  {transaction.product.category}
+                </span>
+                <h2 className="text-lg font-medium text-card-foreground">
+                  {transaction.product.name}
+                </h2>
+
+                {/* Quantity & price per item */}
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-sm text-muted-foreground">
+                    {formatPrice(transaction.product.price)} × {transaction.quantity} item
+                  </span>
+                </div>
+
+                <p className="text-xs text-muted-foreground mt-1">{transaction.date}</p>
+                <p className="text-xs text-muted-foreground font-mono">{transaction.orderId}</p>
+              </div>
+
+              <div className="text-right shrink-0">
+                {/* Total harga sudah dikali quantity */}
+                <p className="text-primary font-bold text-lg">
+                  {formatPrice(transaction.product.price * transaction.quantity)}
+                </p>
+                <span className="inline-block mt-1 px-3 py-1 bg-secondary text-secondary-foreground text-xs font-medium rounded-full">
+                  ✅ Success
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </AnimatePresence>
     </div>
   );
 };

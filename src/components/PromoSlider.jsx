@@ -6,28 +6,28 @@ const promos = [
     title: "Flash Sale Hari Ini!",
     subtitle: "Diskon hingga 50% untuk semua produk elektronik",
     bg: "from-indigo-500 to-purple-600",
-    emoji: "⚡",
+    emoji: "",
   },
   {
     id: 2,
     title: "Free Ongkir Se-Indonesia",
     subtitle: "Berlaku untuk pembelian di atas Rp200.000",
     bg: "from-pink-500 to-rose-500",
-    emoji: "🚚",
+    emoji: "",
   },
   {
     id: 3,
     title: "New Arrivals!",
     subtitle: "Produk terbaru sudah tersedia, cek sekarang!",
     bg: "from-teal-400 to-cyan-600",
-    emoji: "🎉",
+    emoji: "",
   },
   {
     id: 4,
     title: "Member Exclusive",
     subtitle: "Daftar sekarang dan dapatkan cashback 10%",
     bg: "from-orange-400 to-yellow-500",
-    emoji: "👑",
+    emoji: "",
   },
 ];
 
@@ -56,7 +56,7 @@ const PromoSlider = () => {
           {promos.map((promo) => (
             <div
               key={promo.id}
-              className={`min-w-full bg-gradient-to-r ${promo.bg} text-white px-10 py-10 flex items-center justify-between`}
+              className={`min-w-full bg-gradient-to-r ${promo.bg} text-white px-14 py-10 flex items-center justify-between`}
             >
               <div>
                 <p className="text-4xl mb-2">{promo.emoji}</p>
@@ -73,13 +73,13 @@ const PromoSlider = () => {
         {/* Arrow Buttons */}
         <button
           onClick={prev}
-          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors z-10"
         >
           ‹
         </button>
         <button
           onClick={next}
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors z-10"
         >
           ›
         </button>
