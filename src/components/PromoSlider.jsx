@@ -42,7 +42,7 @@ const PromoSlider = () => {
   const next = () => setCurrent((c) => (c + 1) % promos.length);
 
   return (
-    <div className="mb-8">
+    <div className="mb-6">
       <div className="relative overflow-hidden rounded-2xl shadow-lg">
         {/* Slides */}
         <div
@@ -54,7 +54,7 @@ const PromoSlider = () => {
             <img
               src={promo.image}
               alt={promo.alt}
-              className="w-screen h-96 md:h-85 object-cover"
+              className="w-full h-auto md:h-auto "
             />
           </div>
         ))}

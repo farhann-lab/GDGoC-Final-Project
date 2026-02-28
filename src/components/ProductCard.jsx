@@ -94,7 +94,7 @@ const ProductCard = ({ product }) => {
 
           <div className="flex items-center justify-between">
             <motion.div
-              className="text-xl font-bold text-primary"
+              className="text-base md:text-xl font-bold text-primary"
               whileHover={{ scale: 1.05 }}
             >
               {formatPrice(product.price)}
