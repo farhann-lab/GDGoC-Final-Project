@@ -30,7 +30,6 @@ const promos = [
 const PromoSlider = () => {
   const [current, setCurrent] = useState(0);
 
-  // Auto slide setiap 3 detik
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % promos.length);
