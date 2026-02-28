@@ -72,22 +72,22 @@ const Wishlist = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-2 shrink-0">
+              <div className="flex flex-col gap-2 shrink-0 mr-3">
                 <motion.button
                   onClick={() => setSelectedProduct(product)}
-                  className="px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:shadow-md transition-shadow"
+                  className="px-8 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:shadow-md transition-shadow"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  🛒 Order
+                  Order
                 </motion.button>
                 <motion.button
                   onClick={() => removeFromWishlist(product.id)}
-                  className="px-4 py-2 bg-destructive/10 text-destructive rounded-full text-sm font-medium hover:bg-destructive/20 transition-colors"
+                  className="px-8 py-2 bg-destructive text-destructive-foreground rounded-full text-sm font-medium hover:bg-destructive/20 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  🗑️ Hapus
+                  Hapus
                 </motion.button>
               </div>
             </motion.div>

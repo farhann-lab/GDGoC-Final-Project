@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, Heart, ClipboardList, Search } from "lucide-react";
+import { Home, Heart, ClipboardList, Search , Store} from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { useState } from "react";
 
@@ -17,15 +17,19 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
   ];
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50 backdrop-blur-sm">
-      <div className="w-full max-w-[1600px] mx-auto px-6 py-4 flex items-center gap-6">
+    <nav className="bg-card/100 border-b border-border sticky top-0 z-50 backdrop-blur-3xl">
+      <div className="w-full max-w-[1600px] mx-auto px-10 py-7 flex items-center gap-6">
 
         {/* Logo */}
-        <motion.h1
-          className="text-xl font-medium text-primary mr-auto" whileHover={{ scale: 1.05 }}
+        <motion.div
+          className="flex items-center gap-2 text-primary mr-auto"
+          whileHover={{ scale: 1.05 }}
         >
-          🛍️ ShopCatalog
-        </motion.h1>
+          <Store className="w-8 h-8" />
+          <span className="text-3xl font-bold tracking-tight text-foreground">
+            Farhan<span className="text-primary">Pedia</span>
+          </span>
+        </motion.div>
 
         {/* Search Bar — hanya muncul di halaman Home */}
         {isHome && (
@@ -61,7 +65,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                   className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-muted"
+                      : "bg-white text-muted-foreground hover:bg-muted"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

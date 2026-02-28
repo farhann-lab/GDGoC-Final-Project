@@ -11,13 +11,13 @@ export const AppProvider = ({ children }) => {
     const alreadyAdded = wishlist.find((item) => item.id === product.id);
     if (!alreadyAdded) {
       setWishlist([...wishlist, product]);
-      toast.success(`${product.name} ditambahkan ke wishlist! ❤️`);
+      toast.success(`${product.name} ditambahkan ke Wishlist!`);
     }
   };
 
   const removeFromWishlist = (productId) => {
     setWishlist(wishlist.filter((item) => item.id !== productId));
-    toast.error("Produk dihapus dari wishlist");
+    toast.error("Produk dihapus dari Wishlist");
   };
 
   const isWishlisted = (productId) => {

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import promo1 from "../assets/promo1.png";
-import promo2 from "../assets/promo2.png";
+import promo1 from "../assets/promo1.jpeg";
+import promo2 from "../assets/promo2.jpeg";
+import promo3 from "../assets/promo3.jpeg";
+import promo4 from "../assets/promo4.jpeg";
 
 const promos = [
   {
@@ -15,13 +17,13 @@ const promos = [
   },
   {
     id: 3,
-    image: "https://picsum.photos/seed/promo3/1200/400",
-    alt: "New Arrivals",
+    image: promo3,
+    alt: "Promo 3.3",
   },
   {
     id: 4,
-    image: "https://picsum.photos/seed/promo4/1200/400",
-    alt: "Member Exclusive",
+    image: promo4,
+    alt: "Promo Payday Sale",
   },
 ];
 
@@ -40,7 +42,7 @@ const PromoSlider = () => {
   const next = () => setCurrent((c) => (c + 1) % promos.length);
 
   return (
-    <div className="mb-10">
+    <div className="mb-8">
       <div className="relative overflow-hidden rounded-2xl shadow-lg">
         {/* Slides */}
         <div
@@ -52,7 +54,7 @@ const PromoSlider = () => {
             <img
               src={promo.image}
               alt={promo.alt}
-              className="w-full h-70 md:h-67 object-cover"
+              className="w-screen h-96 md:h-85 object-cover"
             />
           </div>
         ))}

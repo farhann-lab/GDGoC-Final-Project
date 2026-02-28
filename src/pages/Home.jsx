@@ -25,7 +25,7 @@ const Home = ({ searchQuery }) => {
   });
 
   return (
-    <div className="pb-8 px-4 pt-8">
+    <div className="pb-8 px-4 pt-6">
       {/* Hero */}
       <motion.div
         className="mb-8 text-center"
@@ -33,10 +33,12 @@ const Home = ({ searchQuery }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl md:text-4xl font-medium text-foreground mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+          <span className="bg-gradient-to-r from-primary to-blue-950 bg-clip-text text-transparent">
           Temukan Produk Favoritmu
+          </span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground font-medium">
           Belanja produk berkualitas dengan harga terbaik
         </p>
       </motion.div>
@@ -46,7 +48,7 @@ const Home = ({ searchQuery }) => {
 
       {/* Category Filter */}
       <motion.div
-        className="mb-8 flex gap-2 overflow-x-auto pb-2"
+        className="mb-6 flex gap-4 overflow-x-auto pb-2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
@@ -55,7 +57,7 @@ const Home = ({ searchQuery }) => {
           <motion.button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-6 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-colors ${
+            className={`px-8 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-colors ${
               selectedCategory === category
                 ? "bg-primary text-primary-foreground shadow-md"
                 : "bg-muted text-muted-foreground hover:bg-primary/20"

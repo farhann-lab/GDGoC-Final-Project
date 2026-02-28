@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
 
           {/* Category Badge */}
           <motion.div
-            className="absolute top-3 left-3 px-3 py-1 bg-secondary/90 backdrop-blur-sm rounded-full text-xs font-medium text-secondary-foreground"
+            className="absolute top-3 left-3 px-3 py-1 bg-secondary backdrop-blur-3xl rounded-full text-xs font-semibold text-secondary-foreground"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}

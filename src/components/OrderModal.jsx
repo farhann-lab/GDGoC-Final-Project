@@ -37,9 +37,9 @@ const OrderModal = ({ product, onConfirm, onClose }) => {
             className="w-20 h-20 object-cover rounded-xl"
           />
           <div>
-            <p className="text-xs text-indigo-500 font-semibold uppercase">{product.category}</p>
+            <p className="text-xs text-blue-500 font-semibold uppercase">{product.category}</p>
             <h3 className="font-bold text-gray-800">{product.name}</h3>
-            <p className="text-indigo-600 font-bold">{formatPrice(product.price)}</p>
+            <p className="text-blue-600 font-bold">{formatPrice(product.price)}</p>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ const OrderModal = ({ product, onConfirm, onClose }) => {
             <span className="text-2xl font-bold text-gray-800 w-8 text-center">{quantity}</span>
             <button
               onClick={() => setQuantity((q) => q + 1)}
-              className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-bold text-xl hover:bg-indigo-200 transition-colors"
+              className="w-10 h-10 rounded-full bg-indigo-100 text-blue-600 font-bold text-xl hover:bg-blue-200 transition-colors"
             >
               +
             </button>
@@ -66,9 +66,9 @@ const OrderModal = ({ product, onConfirm, onClose }) => {
         </div>
 
         {/* Total */}
-        <div className="flex justify-between items-center mb-6 p-3 bg-indigo-50 rounded-xl">
+        <div className="flex justify-between items-center mb-6 p-3 bg-blue-50 rounded-xl">
           <span className="text-gray-600 font-semibold">Total</span>
-          <span className="text-indigo-600 font-bold text-lg">
+          <span className="text-blue-600 font-bold text-lg">
             {formatPrice(product.price * quantity)}
           </span>
         </div>
@@ -83,9 +83,9 @@ const OrderModal = ({ product, onConfirm, onClose }) => {
           </button>
           <button
             onClick={handleConfirm}
-            className="flex-1 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors"
+            className="flex-1 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
           >
-            🛒 Order Sekarang
+            Order Sekarang
           </button>
         </div>
       </div>
