@@ -39,7 +39,7 @@ const products = [
   },
   {
     id: 3,
-    name: "Running Shoes",
+    name: "Sepatu Lari",
     price: 450000,
     image: f3,
     description: "Sepatu lari ringan dengan sol anti-slip dan bahan breathable.",
@@ -47,7 +47,7 @@ const products = [
   },
   {
     id: 4,
-    name: "Minimalist Backpack",
+    name: "Tas Minimalis",
     price: 320000,
     image: f4,
     description: "Tas ransel minimalis dengan kapasitas 20L, cocok untuk kerja dan traveling.",
@@ -95,7 +95,7 @@ const products = [
   },
   {
     id: 10,
-    name: "Scented Candle",
+    name: "Lilin Aromaterapi",
     price: 95000,
     image: f10,
     description: "Lilin aromaterapi dengan wangi lavender, cocok untuk relaksasi.",
@@ -135,7 +135,7 @@ const products = [
   },
   {
     id: 15,
-    name: "Pour Over Coffee Set",
+    name: "Coffee Dripper Set",
     price: 320000,
     image: f15,
     description: "Set alat kopi pour over lengkap dengan dripper, server, dan filter.",
@@ -159,7 +159,7 @@ const products = [
   },
   {
     id: 18,
-    name: "Linen Shirt",
+    name: "Kemeja Linen",
     price: 275000,
     image: f18,
     description: "Kemeja linen breathable, nyaman dipakai seharian di cuaca panas.",
@@ -175,7 +175,7 @@ const products = [
   },
   {
     id: 20,
-    name: "Essential Oil Diffuser",
+    name: "Diffuser Aromaterapi",
     price: 230000,
     image: f20,
     description: "Diffuser aromaterapi ultrasonic dengan lampu LED 7 warna dan timer.",
